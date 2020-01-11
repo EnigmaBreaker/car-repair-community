@@ -1,16 +1,18 @@
-const User = require('../models/user.model.js');
 
+const Post = require('../models/post.models.js');
 
 exports.create = (req, res) => {
-    const user = new User({
-        email : req.body.email,
+    const post = new Post({
         username : req.body.username,
-        password : req.body.password,
-        firstName : req.body.firstName,
-        lastName : req.body.lastName,
+        title : req.body.title,
+        text : req.body.text,
+        picture : req.file.filename,
+        comments : [],
+        upvote : 0,
+        downvote : 0,
     });
 
-    user.save().
+    post.save().
     then(data => {
         res.send(data);
     }).catch(err => {
@@ -20,13 +22,14 @@ exports.create = (req, res) => {
     });
 };
 
-exports.findOne = (req, res) => {
-    User.findOne({username : req.params.userName}, "username email firstName lastName")
-    .then(data => {
-        res.send(data);
-    }).catch(err => {
-        res.status(500).send({
-            message : err.message || "Some error occured while retrieving user",
-        })
-    });
-};
+
+// exports.findOne = (req, res) => {
+//     User.findOne({username : req.params.userName}, "username email firstName lastName")
+//     .then(data => {
+//         res.send(data);
+//     }).catch(err => {
+//         res.status(500).send({
+//             message : err.message || "Some error occured while retrieving user",
+//         })
+//     });
+// };
