@@ -1,3 +1,4 @@
+
 const Post = require('../models/post.models.js');
 var url = require('url');
 var fs = require('fs');
@@ -22,10 +23,9 @@ exports.create = (req, res) => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({
-            message : err.message || "Some error occured while creating the Post."
+            message : err.message || "Some error occured while creating the User."
         });
     });
-
 };
 
 exports.getImage = (req, res) => {
