@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 })
 
 require('./users/routes/user.routes')(app);
-require('./posts/routes/post.routes')(app);
+// require('./posts/routes/post.routes')(app);
 
 app.listen(3000, () => {
   console.log("Server is listening on port 3000");
