@@ -6,7 +6,8 @@ const PostSchema = mongoose.Schema({
     text : String,
     picture : String,
     comments : [String],
-    Likes : Number
+    upvote : Number,
+    downvote: Number
 }, {
     timestamps : true
 });

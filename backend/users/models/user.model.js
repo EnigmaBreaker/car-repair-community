@@ -6,6 +6,8 @@ const UserSchema = mongoose.Schema({
     password : String,
     firstName : String,
     lastName : String,
+    Upvotes: [String],
+    Downvotes: [String]
 }, {
     timestamps : true
 });
