@@ -51,7 +51,7 @@ exports.getPost = (req, res) => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({
-            message : err.message || "Some error occured while retrieving user",
+            message : err.message || "Some error occured while retrieving post",
         })
     });
 };
@@ -62,7 +62,20 @@ exports.getPostIds = (req, res) => {
         res.send(data);
     }).catch(err => {
         res.status(500).send({
-            message : err.message || "Some error occured while retrieving user",
+            message : err.message || "Some error occured while retrieving post ids",
+        })
+    });
+};
+
+exports.comment = (req, res) => {
+    var query = {'_id': req.params.postId};
+    console.log(req.body.comment);
+    Post.findOneAndUpdate(query, {$push: {comments: req.body.comment}}, {new: true})
+    .then(data => {
+        res.send(data);
+    }).catch(err => {
+        res.status(500).send({
+            message : err.message || "Some error occured while adding comment",
         })
     });
 };
