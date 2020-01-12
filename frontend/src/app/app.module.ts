@@ -13,6 +13,7 @@ import { PostComponent } from './post/post.component';
 import { CreatepostComponent } from './createpost/createpost.component';
 import { PostlistComponent } from './postlist/postlist.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     FormsModule,
     HttpModule,
     HttpClientModule,
-    HttpClientJsonpModule
+    HttpClientJsonpModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -54,5 +54,12 @@ export class CommunicationService {
   getPostInfo(postId:string): Observable<any>{
     return this.http.get(this.host + '/post/' + postId);
   }
+
+  like(username: string, postId: string): Observable<any>{
+    return this.http.post(this.host + '/post/like/' + postId, {username : username});
+  }  
+  dislike(username: string, postId: string): Observable<any>{
+    return this.http.post(this.host + '/post/dislike/' + postId, {username : username});
+  }
   constructor(private http: HttpClient) { }
 }

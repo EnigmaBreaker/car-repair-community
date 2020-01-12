@@ -1,1 +1,18 @@
-<p>post works!</p>
+<div *ngIf="isPost" style="margin: 10px; background-color:#cccccc; padding: 6px;">
+    <div>Posted by: <a href="/user/{{post.username}}">{{post.username}}</a></div>
+    <h2>{{post.title}}</h2>
+    <div>{{post.text}}</div>
+    <div *ngIf="isImage"><img [src]="imageUrl" style="width: 100%;"></div>
+    <div *ngIf="!liked" style="margin-top: 3px;">
+        <i class="far fa-heart fa-2x" style="margin-right: 20px; cursor: pointer;" (click)="doLike()"></i>
+        <i class="fas fa-comment fa-2x" style="cursor: pointer;" (click)="expandComment()"></i>
+    </div>
+    <div *ngIf="liked" style="margin-top: 3px;">
+        <i class="fas fa-heart fa-2x" style="margin-right: 20px; cursor: pointer;" (click)="doDislike()"></i>
+        <i class="fas fa-comment fa-2x" style="cursor: pointer;" (click)="expandComment()"></i>
+    </div>
+    <div *ngIf="comment">
+        
+    </div>
+    
+</div>

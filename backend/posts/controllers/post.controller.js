@@ -56,7 +56,7 @@ exports.getPost = (req, res) => {
 };
 
 exports.getPostIds = (req, res) => {
-    Post.find({}).sort({updatedAt: -1})
+    Post.find({}).sort({createdAt: -1})
     .then(data => {
         res.send(data);
     }).catch(err => {
