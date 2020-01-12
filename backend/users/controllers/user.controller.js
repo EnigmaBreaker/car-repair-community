@@ -21,7 +21,7 @@ exports.create = (req, res) => {
 };
 
 exports.findOne = (req, res) => {
-    User.findOne({username : req.params.userName}, "username email firstName lastName")
+    User.findOne({username : req.params.username})
     .then(data => {
         res.send(data);
     }).catch(err => {

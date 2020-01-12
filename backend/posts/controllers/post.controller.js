@@ -1,4 +1,3 @@
-
 const Post = require('../models/post.models.js');
 var url = require('url');
 var fs = require('fs');
@@ -79,3 +78,16 @@ exports.comment = (req, res) => {
         })
     });
 };
+
+exports.like = (req, res) => {
+    var query = {'_id': req.params.postId};
+    Post.findOneAndUpdate(query, {$addToSet: {likes: req.body.username}}, {new: true})
+    .then(data => {
+        res.send(data);
+    }).catch(err => {
+        res.status(500).send({
+            message : err.message || "Some error occured while adding comment",
+        })
+    });
+};
+
