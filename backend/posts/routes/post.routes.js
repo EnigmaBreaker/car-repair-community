@@ -8,4 +8,5 @@ module.exports = (app) => {
     app.get('/post/:postId', posts.getPost);
     app.get('/posts', posts.getPostIds);
     app.post('/comment/:postId', posts.comment);
+    app.post('/post/like/:postId', posts.like);
 }
