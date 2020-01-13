@@ -9,4 +9,5 @@ module.exports = (app) => {
     app.get('/posts', posts.getPostIds);
     app.post('/comment/:postId', posts.comment);
     app.post('/post/like/:postId', posts.like);
+    app.post('/post/dislike/:postId', posts.dislike);
 }
