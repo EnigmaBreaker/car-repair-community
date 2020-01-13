@@ -14,6 +14,8 @@ import { CreatepostComponent } from './createpost/createpost.component';
 import { PostlistComponent } from './postlist/postlist.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     CreatepostComponent,
     PostlistComponent,
     SidebarComponent,
+    SigninComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

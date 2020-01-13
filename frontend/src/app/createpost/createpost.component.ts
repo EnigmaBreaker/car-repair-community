@@ -8,18 +8,19 @@ import { CommunicationService } from '../communication.service';
   styleUrls: ['./createpost.component.css']
 })
 export class CreatepostComponent implements OnInit {
-
+  error = false;
   @ViewChild('fileInput', {static : false}) fileInput;
   onSubmit(f: NgForm) {
+    if(f.value.title == ""){
+      this.error = true;
+    }
+    else{
+      const files: FileList = this.fileInput.nativeElement.files;
 
-    const files: FileList = this.fileInput.nativeElement.files;
-
-
-    // console.log(f.value);  // { first: '', last: '' }
-    // console.log(f.valid);  // false
-    this.communicationService.uploadPost(files, f.value).subscribe(response => {
-      console.log('Post done' + response);
-    });
+      this.communicationService.uploadPost(files, f.value).subscribe(response => {
+        console.log('Post done' + response);
+      });
+    }
   }
   constructor(private communicationService : CommunicationService) { }
 

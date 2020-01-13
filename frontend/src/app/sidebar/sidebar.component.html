@@ -1,1 +1,7 @@
-<p>sidebar works!</p>
+<app-createpost *ngIf="this.authService.signedin; else elseBlock"></app-createpost>
+<ng-template #elseBlock >
+    <app-signup *ngIf="this.authService.signedup; else signinBlock"></app-signup>
+    <ng-template #signinBlock>
+        <app-signin></app-signin>
+    </ng-template>
+</ng-template>

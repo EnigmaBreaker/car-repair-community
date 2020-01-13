@@ -1,9 +1,17 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-    <input name="username" ngModel required>
-    <input name="title" ngModel required #first="ngModel">
-    <input name="text" ngModel>
-    <input #fileInput name="file" type="file" ngModel
-    value="Browse...">
-    <button>Submit</button>
 
-</form>
+<div style="background-color: #cccccc; padding: 15px; margin: 30px; border-radius: 10px;">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+        <legend>Create Post</legend>
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" class="form-control" name="title" placeholder="Title" ngModel>
+          <small *ngIf="error">Title is necessary.</small>
+        </div>
+        <div class="form-group">
+          <label>Content</label>
+          <textarea class="form-control" rows="4" placeholder="Content" ngModel></textarea>
+        </div>
+        <input #fileInput name="file" type="file" class="form-control-file" ngModel value="Browse..." style="margin-bottom: 20px;">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 // import { HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { AuthService } from './auth.service';
 // import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -30,7 +31,7 @@ export class CommunicationService {
     if(files.length === 1){
       formData.append('image', files[0], files[0].name);
     }
-    formData.append('username', f.username);
+    formData.append('username', this.authService.username);
     formData.append('title', f.title);
     formData.append('text', f.text);
     // console.log(formData.get("title"));
@@ -68,5 +69,5 @@ export class CommunicationService {
     return this.http.post(this.host + '/comment/' + postId, {comment : comm})
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 }
