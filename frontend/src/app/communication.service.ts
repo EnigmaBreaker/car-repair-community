@@ -61,5 +61,10 @@ export class CommunicationService {
   dislike(username: string, postId: string): Observable<any>{
     return this.http.post(this.host + '/post/dislike/' + postId, {username : username});
   }
+
+  postComment(username: string, postId: string, comment : string): Observable<any>{
+    return this.http.post(this.host + '/comment/' + postId, {username : username, comment : comment})
+  }
+
   constructor(private http: HttpClient) { }
 }

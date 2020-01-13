@@ -3,6 +3,7 @@ import { PostService } from '../post.service';
 import { CommunicationService } from '../communication.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { AuthService } from '../auth.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-post',
@@ -38,6 +39,15 @@ export class PostComponent implements OnInit {
     this.communicationService.dislike(this.authService.username, this.postId).subscribe(data => console.log(data));
   }
 
+  onSubmit(f: NgForm){
+    console.log(f.value);
+    if(f.value.content === ""){
+      console.log("Please enter comment");
+    }
+    else{
+      this.communicationService.postComment(this.authService.username, this.postId, f.value.content);
+    }
+  }
   ngOnInit() {
     this.communicationService.getPostInfo(this.postService.posts[this.postIndex]._id).subscribe(data => {
       if(data.picture !== ""){
