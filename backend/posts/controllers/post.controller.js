@@ -3,6 +3,8 @@ var url = require('url');
 var fs = require('fs');
 
 exports.create = (req, res) => {
+    console.log("Entering");
+    console.log(req.body);
     var pic = "";
     if (typeof req.file !== 'undefined') {
         pic = req.file.filename;

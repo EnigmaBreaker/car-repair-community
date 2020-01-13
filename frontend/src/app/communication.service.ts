@@ -63,7 +63,9 @@ export class CommunicationService {
   }
 
   postComment(username: string, postId: string, comment : string): Observable<any>{
-    return this.http.post(this.host + '/comment/' + postId, {username : username, comment : comment})
+    var comm = "{\"username\" : \"" + username + "\", \"comment\" : \"" + comment + "\"}";
+    console.log(comm);
+    return this.http.post(this.host + '/comment/' + postId, {comment : comm})
   }
 
   constructor(private http: HttpClient) { }

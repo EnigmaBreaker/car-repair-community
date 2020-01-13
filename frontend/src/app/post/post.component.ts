@@ -19,6 +19,7 @@ export class PostComponent implements OnInit {
   liked = false;
   comment = false;
   postId = "";
+  comments = [];
   constructor(
     private sanitizer: DomSanitizer, 
     private postService : PostService, 
@@ -45,7 +46,8 @@ export class PostComponent implements OnInit {
       console.log("Please enter comment");
     }
     else{
-      this.communicationService.postComment(this.authService.username, this.postId, f.value.content);
+      this.communicationService.postComment(this.authService.username, this.postId, f.value.content).subscribe(data => console.log(data));
+      this.comments.push({username : this.authService.username, comment : f.value.content});
     }
   }
   ngOnInit() {
@@ -55,7 +57,6 @@ export class PostComponent implements OnInit {
           var url= window.URL.createObjectURL(blob);
           console.log(url);
           console.log(blob);
-          
           this.imageUrl = this.sanitizer.bypassSecurityTrustUrl(url);
           this.isImage = true;
         })
@@ -65,6 +66,13 @@ export class PostComponent implements OnInit {
       if (data.likes.includes(this.authService.username)){
         this.liked = true;
       } 
+      for(var i=0; i<data.comments.length; i++){
+        console.log(data.comments[i]);
+        var curr : string = data.comments[i];
+        console.log(curr);
+        this.comments.push(JSON.parse(curr));
+      }
+      console.log(this.comments);
       this.postId = data._id;
       console.log(this.post);
     });
