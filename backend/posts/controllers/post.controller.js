@@ -93,3 +93,15 @@ exports.like = (req, res) => {
     });
 };
 
+exports.dislike = (req, res) => {
+    var query = {'_id': req.params.postId};
+    Post.findOneAndUpdate(query, {$pull: {likes: req.body.username}}, {new: true})
+    .then(data => {
+        res.send(data);
+    }).catch(err => {
+        res.status(500).send({
+            message : err.message || "Some error occured while adding comment",
+        })
+    });
+};
+
