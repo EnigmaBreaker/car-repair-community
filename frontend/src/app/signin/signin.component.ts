@@ -9,9 +9,15 @@ import { NgForm } from '@angular/forms';
 })
 export class SigninComponent implements OnInit {
 
+  error = false;
   onSubmit(f : NgForm){
     console.log(f.value);
-    this.authService.signin(f.value.email, f.value.password);
+    if(f.value.username == "" ){
+      this.error = true;
+    }
+    else{
+      this.authService.signin(f.value.email, f.value.password);
+    }
   }
 
   switchToSignup(){
