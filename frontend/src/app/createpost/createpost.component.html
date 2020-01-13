@@ -1,0 +1,9 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+    <input name="username" ngModel required>
+    <input name="title" ngModel required #first="ngModel">
+    <input name="text" ngModel>
+    <input #fileInput name="file" type="file" ngModel
+    value="Browse...">
+    <button>Submit</button>
+
+</form>

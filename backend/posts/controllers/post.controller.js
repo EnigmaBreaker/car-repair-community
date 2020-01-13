@@ -3,6 +3,8 @@ var url = require('url');
 var fs = require('fs');
 
 exports.create = (req, res) => {
+    console.log("Entering");
+    console.log(req.body);
     var pic = "";
     if (typeof req.file !== 'undefined') {
         pic = req.file.filename;
@@ -56,7 +58,7 @@ exports.getPost = (req, res) => {
 };
 
 exports.getPostIds = (req, res) => {
-    Post.find({}).sort({updatedAt: -1})
+    Post.find({}).sort({createdAt: -1})
     .then(data => {
         res.send(data);
     }).catch(err => {

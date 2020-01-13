@@ -1,0 +1,5 @@
+<ul *ngIf="this.showPosts">
+    <li *ngFor="let post of this.postService.posts;  let i = index">
+        <app-post postIndex={{i}}></app-post>
+    </li>
+</ul>

@@ -1,1 +1,26 @@
-<p>post works!</p>
+<div *ngIf="isPost" style="margin: 10px; background-color:#cccccc; padding: 6px;">
+    <div>Posted by: <a href="/user/{{post.username}}">{{post.username}}</a></div>
+    <h2>{{post.title}}</h2>
+    <div>{{post.text}}</div>
+    <div *ngIf="isImage"><img [src]="imageUrl" style="width: 100%;"></div>
+    <div *ngIf="!liked" style="margin: 5px;">
+        <i class="far fa-heart fa-2x" style="margin-right: 20px; cursor: pointer;" (click)="doLike()"></i>
+        <i class="fas fa-comment fa-2x" style="cursor: pointer;" (click)="expandComment()"></i>
+    </div>
+    <div *ngIf="liked" style="margin: 3px;">
+        <i class="fas fa-heart fa-2x" style="margin-right: 20px; cursor: pointer;" (click)="doDislike()"></i>
+        <i class="fas fa-comment fa-2x" style="cursor: pointer;" (click)="expandComment()"></i>
+    </div>
+    <div *ngIf="comment">
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+            <input name="content" ngModel required>
+            <button>Submit</button>
+        </form>
+        <ul>
+            <li *ngFor="let currcomment of this.comments;" style="margin: 5px;">
+                <div><a href="#"><strong>{{currcomment.username}}: </strong></a>{{currcomment.comment}}</div>
+            </li>
+        </ul>
+    </div>
+    
+</div>
