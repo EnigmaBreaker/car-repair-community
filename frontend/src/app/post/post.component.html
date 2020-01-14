@@ -4,12 +4,17 @@
     <div>{{post.text}}</div>
     <div *ngIf="isImage"><img [src]="imageUrl" style="width: 100%;"></div>
     <div *ngIf="!liked" style="margin: 5px;">
-        <i class="far fa-heart fa-2x" style="margin-right: 20px; cursor: pointer;" (click)="doLike()"></i>
+        <i class="far fa-heart fa-2x" style="cursor: pointer;" (click)="doLike()"></i>
+        <span style="margin-right: 20px;">{{this.likes}}</span>
         <i class="fas fa-comment fa-2x" style="cursor: pointer;" (click)="expandComment()"></i>
+        <span>{{this.comments.length}}</span>
+
     </div>
-    <div *ngIf="liked" style="margin: 3px;">
-        <i class="fas fa-heart fa-2x" style="margin-right: 20px; cursor: pointer;" (click)="doDislike()"></i>
+    <div *ngIf="liked" style="margin: 5px;">
+        <i class="fas fa-heart fa-2x" style="cursor: pointer;" (click)="doDislike()"></i>
+        <span style="margin-right: 20px;">{{this.likes}}</span>
         <i class="fas fa-comment fa-2x" style="cursor: pointer;" (click)="expandComment()"></i>
+        <span style="font-size: large;">{{this.comments.length}}</span>
     </div>
     <div *ngIf="comment">
         <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>

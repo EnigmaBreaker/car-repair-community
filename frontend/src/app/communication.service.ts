@@ -4,6 +4,7 @@ import { HttpHeaders } from '@angular/common/http';
 // import { HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { AuthService } from './auth.service';
+import { PostService } from './post.service';
 // import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -11,27 +12,48 @@ import { AuthService } from './auth.service';
 })
 export class CommunicationService {
   host = "http://localhost:3000";
+  username: string = "";
+  signedin = false;
+  signedup = false;
 
-  // private handleError<T> (operation = 'operation', result?: T) {
-  //   return (error: any): Observable<T> => {
-   
-  //     // TODO: send the error to remote logging infrastructure
-  //     console.error(error); // log to console instead
-  //     console.log('Error has happened');
-  //     // TODO: better job of transforming error for user consumption
-  //     // Let the app keep running by returning an empty result.
-  //     return of(result as T);
-  //   };
-  // }
+  signin(username, password){
+    this.signIn(username, password).subscribe(data => {
+      if(data.status){
+        this.username = username;
+        this.signedin = true;
+        this.signedup = false;
+        this.getAllPost().subscribe(data => {
+          this.postService.posts = data;
+          console.log(data);
+          console.log(this.postService.posts);
+        });
+      }
+    })
+  }
+
+  signup(email, username, password, firstName, lastName){
+    this.signUp(email, username, password, firstName, lastName).subscribe(data => {
+      console.log(data);
+      if(data.status){
+        this.username = username;
+        this.signedin = true;
+        this.signedup = false;
+
+      }
+    })
+  }
+
+  signout(){
+    this.signedin = false;
+    this.signedup = false;
+  }
+
   uploadPost(files: any, f: any) : Observable<any>{
-    console.log("posting");
-    console.log(files);
-    console.log(f);
     const formData: FormData = new FormData();
     if(files.length === 1){
       formData.append('image', files[0], files[0].name);
     }
-    formData.append('username', this.authService.username);
+    formData.append('username', this.username);
     formData.append('title', f.title);
     formData.append('text', f.text);
     // console.log(formData.get("title"));
@@ -65,9 +87,16 @@ export class CommunicationService {
 
   postComment(username: string, postId: string, comment : string): Observable<any>{
     var comm = "{\"username\" : \"" + username + "\", \"comment\" : \"" + comment + "\"}";
-    console.log(comm);
     return this.http.post(this.host + '/comment/' + postId, {comment : comm})
   }
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  signIn(username: string, password: string): Observable<any>{
+    return this.http.post(this.host + '/signin', {username : username, password : password});
+  }
+
+  signUp(email: string, username: string, password: string, firstName: string, lastName: string): Observable<any>{
+    return this.http.post(this.host + '/signup', {username : username, password : password, firstName : firstName, lastName : lastName, email: email});
+  }
+
+  constructor(private http: HttpClient, private postService: PostService) { }
 }

@@ -16,6 +16,7 @@ export class PostComponent implements OnInit {
   isPost = false;
   imageUrl: SafeUrl = "";
   post =  {};
+  likes = 0;
   liked = false;
   comment = false;
   postId = "";
@@ -23,8 +24,7 @@ export class PostComponent implements OnInit {
   constructor(
     private sanitizer: DomSanitizer, 
     private postService : PostService, 
-    private communicationService : CommunicationService,
-    private authService : AuthService
+    private communicationService : CommunicationService
   ) { }
 
   expandComment(){
@@ -32,12 +32,21 @@ export class PostComponent implements OnInit {
     console.log(this.comment);
   }
   doLike(){
+    // console.log(this.communicationService.signedin);
+    if(!this.communicationService.signedin){
+      return;
+    }
     this.liked = true;
-    this.communicationService.like(this.authService.username, this.postId).subscribe(data => console.log(data));
+    this.likes = this.likes + 1;
+    this.communicationService.like(this.communicationService.username, this.postId).subscribe(data => console.log(data));
   }
   doDislike(){
+    if(!this.communicationService.signedin){
+      return;
+    }
     this.liked = false;
-    this.communicationService.dislike(this.authService.username, this.postId).subscribe(data => console.log(data));
+    this.likes = this.likes - 1;
+    this.communicationService.dislike(this.communicationService.username, this.postId).subscribe(data => console.log(data));
   }
 
   onSubmit(f: NgForm){
@@ -46,8 +55,8 @@ export class PostComponent implements OnInit {
       console.log("Please enter comment");
     }
     else{
-      this.communicationService.postComment(this.authService.username, this.postId, f.value.content).subscribe(data => console.log(data));
-      this.comments.push({username : this.authService.username, comment : f.value.content});
+      this.communicationService.postComment(this.communicationService.username, this.postId, f.value.content).subscribe(data => console.log(data));
+      this.comments.push({username : this.communicationService.username, comment : f.value.content});
     }
   }
   ngOnInit() {
@@ -63,7 +72,8 @@ export class PostComponent implements OnInit {
       }
       this.post = data;
       this.isPost = true;
-      if (data.likes.includes(this.authService.username)){
+      this.likes = data.likes.length;
+      if (data.likes.includes(this.communicationService.username)){
         this.liked = true;
       } 
       for(var i=0; i<data.comments.length; i++){

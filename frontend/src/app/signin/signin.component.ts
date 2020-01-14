@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { NgForm } from '@angular/forms';
+import { CommunicationService } from '../communication.service';
 
 @Component({
   selector: 'app-signin',
@@ -11,20 +12,19 @@ export class SigninComponent implements OnInit {
 
   error = false;
   onSubmit(f : NgForm){
-    console.log(f.value);
     if(f.value.username == "" ){
       this.error = true;
     }
     else{
-      this.authService.signin(f.value.email, f.value.password);
+      this.communicationService.signin(f.value.username, f.value.password);
     }
   }
 
   switchToSignup(){
-    this.authService.signedup = true;
+    this.communicationService.signedup = true;
   }
 
-  constructor(private authService: AuthService) { }
+  constructor(private communicationService: CommunicationService) { }
 
   ngOnInit() {
   }
