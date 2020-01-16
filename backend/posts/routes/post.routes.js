@@ -1,3 +1,6 @@
+// This contains routing for post. It calls a function in controller when some route is called for.
+
+
 const multer = require('multer');
 const upload = multer({dest: '../assets/images'});
 

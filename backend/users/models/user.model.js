@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
-
+// It is the schema for the user. It contains fields which are stored in the database under name user.
 const UserSchema = mongoose.Schema({
     email : { type: String, required: true, unique: true, index: true},
     username : { type: String, required: true, unique: true, index: true},
