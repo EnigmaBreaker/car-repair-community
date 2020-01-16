@@ -7,6 +7,10 @@ import { CommunicationService } from '../communication.service';
   templateUrl: './postlist.component.html',
   styleUrls: ['./postlist.component.css']
 })
+
+// It contains the list of posts. When called, it loads all the posts from the backend and save it in post service. 
+// It then calls the post component on loop which shows the post on the frontend.
+
 export class PostlistComponent implements OnInit {
   numposts = 0;
   showPosts = false;

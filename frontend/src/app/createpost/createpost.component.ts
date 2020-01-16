@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
   templateUrl: './createpost.component.html',
   styleUrls: ['./createpost.component.css']
 })
+
+// Manage a form to create a post. When form is filled, it sends the field values to backend as a post and put it on the frontpage to show.
+
 export class CreatepostComponent implements OnInit {
   error = false;
   @ViewChild('fileInput', {static : false}) fileInput;

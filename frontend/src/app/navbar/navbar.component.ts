@@ -7,6 +7,9 @@ import { CommunicationService } from '../communication.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
+// It manages the navigation bar. Community name is always on the top. Option to signout comes when signed in.
+
 export class NavbarComponent implements OnInit {
   constructor(private userService : UserService, private authService : CommunicationService) { }
   signUp(){

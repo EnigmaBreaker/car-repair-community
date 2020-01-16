@@ -5,6 +5,8 @@ import { CommunicationService } from '../communication.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
+// It contain sidebar and postlist. It doesn't do anything other than splitting the frontpage to make room for posts and sidebar. See the html for the split.
 export class DashboardComponent implements OnInit {
 
   constructor(private communicationService : CommunicationService) { 
@@ -12,16 +14,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.communicationService.getUserInfo("something").subscribe(data => console.log(data));
-    // this.communicationService.getAllPost().subscribe(data => console.log(data));
-    // this.communicationService.getImage("4ca5cb44464d4f0961a8278046f08cdc").subscribe(data => {
-    //   var url= window.URL.createObjectURL(data);
-    //   console.log(url);
-    //   console.log(data);
-    //   window.open(url);
-    // });
-
-    // this.communicationService.getPostInfo("5e1b5278b247cd784cb64699").subscribe(data => console.log(data));
   }
 
 }

@@ -8,6 +8,9 @@ import { CommunicationService } from '../communication.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
+
+// It manages the signup form on the sidebar and have option to switch to signin. It redirects side bar to createpost when signup is successfully done.
+
 export class SignupComponent implements OnInit {
 
   error = false;

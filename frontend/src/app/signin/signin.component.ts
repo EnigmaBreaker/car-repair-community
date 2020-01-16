@@ -8,6 +8,9 @@ import { CommunicationService } from '../communication.service';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
+
+// It display the signin form and option to switch to signup. When signed in, it calls the function to signin and redirects sidebar to createpost
+// when signin is successfully done.
 export class SigninComponent implements OnInit {
 
   error = false;

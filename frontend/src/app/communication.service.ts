@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-// import { HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { AuthService } from './auth.service';
 import { PostService } from './post.service';
-// import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
+
+// It contains all the functions to interact with the APIs in the backend. 
+
 export class CommunicationService {
   host = "http://localhost:3000";
   username: string = "";

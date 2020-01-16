@@ -10,6 +10,10 @@ import { NgForm } from '@angular/forms';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
+
+// This is the file responsible to show a single post on the screen. It takes a post from the post service and display it on the screen.
+// It also manages likes and comments for the post. It sends the like and comment to the backend when done.
+
 export class PostComponent implements OnInit {
   @Input() postIndex: number;
   isImage = false;
