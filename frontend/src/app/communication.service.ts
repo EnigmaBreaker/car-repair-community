@@ -14,6 +14,7 @@ export class CommunicationService {
   username: string = "";
   signedin = false;
   signedup = false;
+  about = false;
 
   signin(username, password){
     this.signIn(username, password).subscribe(data => {

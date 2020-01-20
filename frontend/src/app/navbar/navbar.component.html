@@ -1,9 +1,11 @@
 <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #110e0e;">
     <div>
-        <a class="navbar-brand brand-custom" href="/" style="color: white; width: max-content;float: left;">Car Repair Community</a>
+        <a class="navbar-brand brand-custom" href="/" (click)="noabout()" style="color: white; width: max-content;float: left;"><img src="../../assets/LogoMakr_3gCsrT.png" alt="logo.png" style="width: auto; height: 35px; margin-left: 80px; margin-right: 10px;">CarMasters</a>
 
-        <div class="btn-group float-right" style="width:max-content;" *ngIf="this.authService.signedin">
-            <button type="button" class="btn btn-primary" (click)="signOut()">SignOut</button>
+        <div class="btn-group float-right" style="width:max-content; margin-right: 40px;">
+            <button type="button" class="btn btn-primary" (click)="signOut()"  *ngIf="this.authService.signedin">SignOut</button>
+            <button type="button" class="btn btn-primary" (click)="about()">About</button>
+            
         </div>
     </div>
   </nav>

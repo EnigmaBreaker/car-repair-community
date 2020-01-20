@@ -1,4 +1,9 @@
-<div style="margin-top: 54px; width: full; height: 100%; ">
+<div *ngIf="this.communicationService.about" style="margin-top: 80px; width: full; height: 100%; ">
+    <div style="float: left; width: 30%; padding: 20px;"></div>
+    <div style="float: left; width: 40%;"><app-about></app-about></div>
+</div>
+
+<div style="margin-top: 54px; width: full; height: 100%; " *ngIf="!this.communicationService.about">
     <div style="float: left; width: 75%; background-color: #282828;">
         <div style="float: right; width: 72%;">
             <app-postlist></app-postlist>
